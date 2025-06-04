@@ -27,37 +27,59 @@ exports.getAllStudents = async (req, res) => {
   }
 };
 
-
-
-
 /**
- * Get all tournaments
- * @route GET /api/tournaments
+ * POST request to issue an exit request for a student
+ * @route POST /api/exit-requests/Request-Exit
  * @access Public
  */
 exports.requestExit = async (req, res) => {
+  const studentId = req.body.studentId;
+
+  const sql = `
+    UPDATE Exit_Request er
+    JOIN Student s ON er.FK_Student_ID = s.Student_ID
+    SET er.Status = 'Requested'
+    WHERE s.Student_ID = ? AND er.Status = 'Present'
+  `;
+
   try {
-    const { studentId, empId, resId } = req.body;
+    const [result] = await pool.execute(sql, [studentId]);
 
-    // Validate input
-    if (!studentId || !empId || !resId) {
-      return res.status(400).json({ error: 'Missing studentId, empId, or resId.' });
+    if (result.affectedRows > 0) {
+      res.status(200).json({ message: 'Status updated to Requested' });
+    } else {
+      res.status(404).json({ message: 'No matching Present status found for this student' });
     }
-
-    const [result] = await pool.query(
-      `INSERT INTO Exit_Request 
-       (Status, Created_At, FK_Emp_ID, FK_Student_ID, FK_Res_ID)
-       VALUES ('Pending', NOW(), ?, ?, ?)`,
-      [empId, studentId, resId]
-    );
-
-    res.status(201).json({
-      message: 'Exit request submitted successfully.',
-      requestId: result.insertId
-    });
-
-  } catch (error) {
-    console.error('Error processing exit request:', error);
-    res.status(500).json({ error: 'Internal server error.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
+
+/**
+ * POST request to check student exit
+ * @route POST /api/exit-requests/Check-Exit
+ * @access Public
+ */
+exports.checkExit = async (req, res) => {
+      const studentId = req.body.studentId;
+
+  const sql = `
+    UPDATE Exit_Request er
+    JOIN Student s ON er.FK_Student_ID = s.Student_ID
+    SET er.Status = 'Exited'
+    WHERE s.Student_ID = ? AND er.Status = 'Approved'
+  `;
+
+  try {
+    const [result] = await pool.execute(sql, [studentId]);
+
+    if (result.affectedRows > 0) {
+      res.status(200).json({ message: 'Status updated to Exited' });
+    } else {
+      res.status(404).json({ message: 'No matching Approved status found for this student' });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+

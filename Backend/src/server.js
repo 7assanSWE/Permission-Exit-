@@ -5,9 +5,6 @@ require('dotenv').config({path: '../.env'}) // Load environment variables from .
 const express = require('express')
 const cors = require('cors')
 
-// Models Imports
-// const { createPlayerTestTable } = require('./models/PlayerTest')
-
 // Routes Imports
 const exitRequests = require('./Routes/ExitRequests.js');
 

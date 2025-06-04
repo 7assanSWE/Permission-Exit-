@@ -6,6 +6,8 @@ router.get('/Students', ExitRequestsController.getAllStudents); // Get all stude
 
 router.post('/Request-Exit', ExitRequestsController.requestExit); // Post exit request for a student
 
+router.post('/Check-Exit', ExitRequestsController.checkExit); // Post exit check for a student
+
 
 
 module.exports = router;

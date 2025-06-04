@@ -60,5 +60,5 @@ INSERT INTO Exit_Request (Status, FK_Student_ID)VALUES
   ('Approved', 102),
   ('Exited', 103),
   ('Rejected', 104),
-  ('Approved', 105);
+  ('Present', 105);
 
