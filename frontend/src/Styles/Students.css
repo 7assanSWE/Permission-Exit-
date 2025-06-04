@@ -1,0 +1,23 @@
+.buttons_container {
+    display: flex;
+    gap: 10px;    
+    background-color: antiquewhite;
+    
+}
+
+.student-row {
+  display: grid;
+  grid-template-columns: 200px 150px 250px 150px; /* Adjust widths as needed */
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+p, .buttons {
+  margin: 0;
+}
