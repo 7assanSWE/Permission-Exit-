@@ -1,5 +1,5 @@
 // Components
-import RequestExitPage  from './Components/RequestExitPage';
+import ExitRequestsPage  from './Components/ExitRequestsPage';
 import ExitApprovals from './Components/ExitApprovals'
 import Header from './Components/Header';
 
@@ -13,7 +13,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<RequestExitPage/>}></Route>
+          <Route path="/" element={<ExitRequestsPage/>}></Route>
           <Route path="/ExitApprovals" element={<ExitApprovals/>}></Route>
         </Routes>
       </BrowserRouter>

@@ -3,19 +3,19 @@ import Students from "./Students";
 import Header from "./Header";
 
 // Styles
-import '../Styles/RequestExitPage.css';
+import '../Styles/ExitRequestsPage.css';
 
 // Others
 import { useState } from "react";
 
-function RequestExitPage() {
+function ExitRequestsPage() {
     // Example students array
     const [students] = useState([
-        { name: "Zahraa Mohammad", id: "20202002", status: "Approved" },
-        { name: "Ali Ahmed", id: "20202003", status: "Pending" },
-        { name: "Sara Ali", id: "20202004", status: "Rejected" },
-        { name: "Zahraa Mohammad", id: "20202002", status: "Approved" },
-        { name: "Fatima Noor", id: "20202005", status: "Approved" }
+        { name: "Zahraa Mohammad", id: "101", status: "Requested" },
+        { name: "Jood Ahmed", id: "102", status: "Approved" },
+        { name: "Sara Ali", id: "103", status: "Exited" },
+        { name: "Farah Mohammad", id: "104", status: "Rejected" },
+        { name: "Fatima Noor", id: "105", status: "Approved" }
     ]);
     const [search, setSearch] = useState("");
 
@@ -56,4 +56,4 @@ function RequestExitPage() {
     );
 }
 
-export default RequestExitPage;
+export default ExitRequestsPage;

@@ -6,7 +6,7 @@ function Header() {
 
     return(
         <div className="buttons_container">
-            <Link to="/">RequestExit</Link>
+            <Link to="/">ExitRequests</Link>
             <Link to="/ExitApprovals">ExitApprovals</Link>
         </div>
     )

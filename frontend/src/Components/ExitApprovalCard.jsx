@@ -7,8 +7,8 @@ function Students(student) {
       <p className="name">{student.name}</p>
       <p className="id">{student.id}</p>
       <div className="buttons">
-        <button>Request Exit</button>
-        <button>Checked</button>
+        <button>Approve</button>
+        <button>Reject</button>
       </div>
       <p className="status">{student.status}</p>
     </div>

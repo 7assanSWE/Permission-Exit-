@@ -12,11 +12,11 @@ import { useState } from "react";
 function ExitApprovals() {
     // Example students array
     const [students] = useState([
-        { name: "Zahraa Mohammad", id: "20202002", status: "Approved" },
-        { name: "Ali Ahmed", id: "20202003", status: "Pending" },
-        { name: "Sara Ali", id: "20202004", status: "Rejected" },
-        { name: "Zahraa Mohammad", id: "20202002", status: "Approved" },
-        { name: "Fatima Noor", id: "20202005", status: "Approved" }
+        { name: "Zahraa Mohammad", id: "101", status: "Requested" },
+        { name: "Jood Ahmed", id: "102", status: "Approved" },
+        { name: "Sara Ali", id: "103", status: "Exited" },
+        { name: "Farah Mohammad", id: "104", status: "Rejected" },
+        { name: "Fatima Noor", id: "105", status: "Approved" }
     ]);
     const [search, setSearch] = useState("");
 
