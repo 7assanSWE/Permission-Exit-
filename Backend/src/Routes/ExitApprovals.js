@@ -1,7 +1,10 @@
 const router = require('express').Router();
 
-const ExitRequestsController = require('../Controllers/ExitApprovalsController.js'); // Import the adminController
+const ExitApprovalsController = require('../Controllers/ExitApprovalsController'); // Import the adminController
 
-router.get('/Students', ExitRequestsController.getAllStudents); // Get all students
+router.post('/approve-exit', ExitApprovalsController.approveExit); // Approve student exit
+
+router.post('/reject-exit', ExitApprovalsController.rejectExit); // Reject student exit
+
 
 module.exports = router;

@@ -15,9 +15,8 @@ exports.getAllStudents = async (req, res) => {
         s.Middle_n,
         s.Last_n,
         er.Status
-      FROM Student s
-      LEFT JOIN Exit_Request er 
-      ON s.Student_ID = er.FK_Student_ID`
+      FROM Student s, Exit_Request er
+      WHERE s.Student_ID = er.FK_Student_ID`
     );
 
     res.status(200).json(rows);

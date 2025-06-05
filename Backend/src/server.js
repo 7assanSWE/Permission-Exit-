@@ -7,6 +7,8 @@ const cors = require('cors')
 
 // Routes Imports
 const exitRequests = require('./Routes/ExitRequests.js');
+const exitApprovals = require('./Routes/ExitApprovals.js');
+
 
 // environment variables
 const PORT = process.env.PORT || 5000
@@ -22,6 +24,7 @@ app.use(express.json())
 
 // Routes
 app.use('/api/exit-requests', exitRequests);
+app.use('/api/requests-approvals', exitApprovals)
 
 
 // Error handling 
