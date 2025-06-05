@@ -13,28 +13,32 @@ function ExitApprovals() {
     const [search, setSearch] = useState("");
 
     // Fetch students from backend on mount
-    // I should fetch also the exti requests to get the stauts of 
-    useEffect(() => {
-        fetch("http://localhost:5000/api/exit-requests/Students")
-            .then(res => res.json())
-            .then(data => setStudents(data))
-            .catch(err => {
-                console.error("Failed to fetch students:", err);
-                setStudents([]); // fallback to empty array on error
-            });
-    }, []);
+useEffect(() => {
+    fetch("http://localhost:5000/api/requests-approvals/get-students-status-requested")
+        .then(res => res.json())
+        .then(data => {
+            // Combine first + middle + last into full name
+            const formatted = data.map(student => ({
+                id: student.Student_ID.toString(),
+                name: `${student.First_n} ${student.Middle_n} ${student.Last_n}`,
+                status: student.Status
+            }));
+            setStudents(formatted);
+        })
+        .catch(err => console.error("Error fetching students:", err));
+}, []);
 
-    // Filter students by name or id
+
+    // Filter students by full name or ID
     const filteredStudents = students.filter(
         s =>
-            (s.name && s.name.toLowerCase().includes(search.toLowerCase())) ||
-            (s.id && s.id.includes(search))
+            s.name.toLowerCase().includes(search.toLowerCase()) ||
+            s.id.includes(search)
     );
 
     return (
         <>
-        <h1>hi</h1>
-            {/* <Header/>
+            <Header/>
             <label htmlFor="searchBar">Search by Name or ID </label>
             <input
                 type="search"
@@ -49,15 +53,22 @@ function ExitApprovals() {
             <br />
 
             <div className="students_container">
-                {filteredStudents.map((student, idx) => (
-                    <ExitApprovalCard
-                        key={idx}
-                        name={student.first_n + student.middle_n + student.last_n}
-                        id={student.id}
-                        status={Exist_Request.status}
-                    />
-                ))}
-            </div> */}
+{filteredStudents.map((student) => (
+  <ExitApprovalCard
+    key={student.id}
+    name={student.name}
+    id={student.id}
+    status={student.status}
+    onStatusUpdate={(newStatus) => {
+      setStudents(prev =>
+        prev.map(s =>
+          s.id === student.id ? { ...s, status: newStatus } : s
+        )
+      );
+    }}
+  />
+))}
+            </div>
         </>
     );
 }
