@@ -56,9 +56,9 @@ CREATE TABLE Exit_Request (
 );
 -- Insert sample data
 INSERT INTO Exit_Request (Status, FK_Student_ID)VALUES
-  ('Requested', 101),
-  ('Approved', 102),
-  ('Exited', 103),
-  ('Rejected', 104),
+  ('Present', 101),
+  ('Present', 102),
+  ('Present', 103),
+  ('Present', 104),
   ('Present', 105);
 

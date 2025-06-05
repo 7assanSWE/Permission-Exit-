@@ -6,20 +6,29 @@ import Header from "./Header";
 import '../Styles/ExitRequestsPage.css';
 
 // Others
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ExitRequestsPage() {
-    // Example students array
-    const [students] = useState([
-        { name: "Zahraa Mohammad", id: "101", status: "Requested" },
-        { name: "Jood Ahmed", id: "102", status: "Approved" },
-        { name: "Sara Ali", id: "103", status: "Exited" },
-        { name: "Farah Mohammad", id: "104", status: "Rejected" },
-        { name: "Fatima Noor", id: "105", status: "Approved" }
-    ]);
+    const [students, setStudents] = useState([]);
     const [search, setSearch] = useState("");
 
-    // Filter students by name or id
+    // Fetch students from backend when component mounts
+    useEffect(() => {
+        fetch("http://localhost:5000/api/exit-requests/Students")
+            .then(res => res.json())
+            .then(data => {
+                // Combine first + middle + last into full name
+                const formatted = data.map(student => ({
+                    id: student.Student_ID.toString(),
+                    name: `${student.First_n} ${student.Middle_n} ${student.Last_n}`,
+                    status: student.Status
+                }));
+                setStudents(formatted);
+            })
+            .catch(err => console.error("Error fetching students:", err));
+    }, []);
+
+    // Filter students by full name or ID
     const filteredStudents = students.filter(
         s =>
             s.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -28,7 +37,7 @@ function ExitRequestsPage() {
 
     return (
         <>
-            <Header/>
+            <Header />
             <label htmlFor="searchBar">Search by Name or ID </label>
             <input
                 type="search"
@@ -43,14 +52,21 @@ function ExitRequestsPage() {
             <br />
 
             <div className="students_container">
-                {filteredStudents.map((student, idx) => (
-                    <Students
-                        key={idx}
-                        name={student.name}
-                        id={student.id}
-                        status={student.status}
-                    />
-                ))}
+{filteredStudents.map((student) => (
+  <Students
+    key={student.id}
+    name={student.name}
+    id={student.id}
+    status={student.status}
+    onStatusUpdate={(newStatus) => {
+      setStudents(prev =>
+        prev.map(s =>
+          s.id === student.id ? { ...s, status: newStatus } : s
+        )
+      );
+    }}
+  />
+))}
             </div>
         </>
     );

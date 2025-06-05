@@ -1,5 +1,36 @@
 const pool = require('../config/db.js'); // Import the database connection pool
 
+
+/**
+ * Get reqeust to retreive all students of status: Requested
+ * @route Get /api/requests-approvals/get-students-status-requested
+ * @access Public
+ */
+exports.getStudentsStatusRequested = async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      `SELECT 
+        s.Student_ID,
+        s.First_n,
+        s.Middle_n,
+        s.Last_n,
+        er.Status
+      FROM Student s, Exit_Request er
+      WHERE s.Student_ID = er.FK_Student_ID
+      AND
+      er.Status = 'Requested'`
+    );
+
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error('Error fetching students:', error);
+    res.status(500).json({ error: 'Internal server error.' });
+  }
+};
+
+
+
+
 /**
  * POST request to approve student request exit
  * @route POST /api/requests-approvals/approve-exit

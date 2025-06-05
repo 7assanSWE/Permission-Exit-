@@ -2,7 +2,7 @@ const pool = require('../config/db.js'); // Import the database connection pool
 
 
 /**
- * Get all students
+ * Get all students infromation
  * @route GET /api/exit-requests/Students
  * @access Public
  */

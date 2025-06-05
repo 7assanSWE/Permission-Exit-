@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const ExitApprovalsController = require('../Controllers/ExitApprovalsController'); // Import the adminController
 
+router.get('/get-students-status-requested', ExitApprovalsController.getStudentsStatusRequested) // Get all students with status: Requested
+
 router.post('/approve-exit', ExitApprovalsController.approveExit); // Approve student exit
 
 router.post('/reject-exit', ExitApprovalsController.rejectExit); // Reject student exit
