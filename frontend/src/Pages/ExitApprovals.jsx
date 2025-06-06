@@ -1,15 +1,14 @@
 // React Components
 import ExitApprovalCard from "../Components/ExitApprovalCard";
-import Header from "../Components/Header";
 import SearchBar from "../Components/SearchBar";
 import StudentsHeader from "../Components/StudentsHeader";
-
 
 // Styles
 import '../Styles/Pages.css';
 
 // Others
 import { useState, useEffect } from "react";
+
 
 function ExitApprovals() {
     const [students, setStudents] = useState([]);
@@ -41,7 +40,10 @@ useEffect(() => {
 
     return (
         <>
-            <SearchBar/>
+            <SearchBar
+            search={search}
+            setSearch={setSearch}
+            />
             <StudentsHeader/>
             {/* Students' Records */}
             <div className="students_container">

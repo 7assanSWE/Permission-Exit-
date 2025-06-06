@@ -1,3 +1,4 @@
+// Importing Styles
 import '../Styles/SearchBar.css'
 
 function SearchBar({search, setSearch}) {

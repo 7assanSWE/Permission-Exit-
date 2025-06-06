@@ -1,13 +1,13 @@
 // Importing Styles
-import '../Styles/StudentsHeader.css';
+import '../Styles/StudentsHeader.css'
 
 function StudentsHeader() {
     return(
             <div className="student-header-row">
-              <p className="name">Name</p>
-              <p className="id">ID</p>
-              <div className="buttons">Actions</div>
-              <p className="status">Status</p>
+              <p>Name</p>
+              <p>ID</p>
+              <div>Actions</div>
+              <p>Status</p>
             </div>
     )
     

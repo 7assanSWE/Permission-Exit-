@@ -1,5 +1,9 @@
-import { useState } from 'react';
+// Styling Imports
 import '../Styles/Students.css';
+
+// Others
+import { useState } from 'react';
+
 
 function Students({ name, id, status, onStatusUpdate }) {
   const [visible, setVisible] = useState(true);
@@ -17,7 +21,7 @@ function Students({ name, id, status, onStatusUpdate }) {
 
       if (response.ok) {
         onStatusUpdate("Approved");
-        setTimeout(() => setVisible(false), 1000); // Hide component after 1 second
+        setTimeout(() => setVisible(false), 5500); // Hide component after 1 second
       } else {
         alert(result.message || "Request failed");
       }
@@ -39,7 +43,7 @@ function Students({ name, id, status, onStatusUpdate }) {
 
       if (response.ok) {
         onStatusUpdate("Rejected");
-        setTimeout(() => setVisible(false), 1000); // Hide component after 1 second
+        setTimeout(() => setVisible(false), 5500); // Hide component after 1 second
       } else {
         alert(result.message || "Request failed");
       }
@@ -63,7 +67,7 @@ function Students({ name, id, status, onStatusUpdate }) {
           Reject
         </button>
       </div>
-      <p className="status">{status}</p>
+      <p className={`status ${status.toLowerCase()}`}>{status}</p>
     </div>
   );
 }

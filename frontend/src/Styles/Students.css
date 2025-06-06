@@ -68,3 +68,58 @@
 p {
   margin: 0;
 }
+
+/* Common status styling */
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  min-width: 100px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  margin-top: 4px;
+}
+
+/* Individual statuses */
+.status.present::before {
+  content: "✅ ";
+}
+.status.present {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.requested::before {
+  content: "⏳ ";
+}
+.status.requested {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.approved::before {
+  content: "✔️ ";
+}
+.status.approved {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status.exited::before {
+  content: "🚪 ";
+}
+.status.exited {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.status.rejected::before {
+  content: "❌ ";
+}
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+

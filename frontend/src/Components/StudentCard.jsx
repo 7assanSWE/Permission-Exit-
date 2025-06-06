@@ -1,9 +1,11 @@
+// Importing Styles
 import '../Styles/Students.css';
 
 function Students({ name, id, status, onStatusUpdate }) {
 
   const requestExit = async () => {
     try {
+      // Post Request to to request exit (Status: Present --> Requested)
       const response = await fetch("http://localhost:5000/api/exit-requests/Request-Exit", {
         method: "POST",
         headers: {
@@ -27,6 +29,7 @@ function Students({ name, id, status, onStatusUpdate }) {
 
 const ExitChecked = async () => {
       try {
+      // Post Request to to check exit (Status: Approved --> Exited)
       const response = await fetch("http://localhost:5000/api/exit-requests/Check-Exit", {
         method: "POST",
         headers: {
@@ -60,7 +63,7 @@ const ExitChecked = async () => {
           Checked
         </button>
       </div>
-      <p className="status">{status}</p>
+      <p className={`status ${status.toLowerCase()}`}>{status}</p>
     </div>
   );
 }
