@@ -1,12 +1,12 @@
 // React Components
-import ExitApprovalCard from "./ExitApprovalCard";
-import Header from "./Header";
-import SearchBar from "./SearchBar";
-import StudentsHeader from "./StudentsHeader";
+import ExitApprovalCard from "../Components/ExitApprovalCard";
+import Header from "../Components/Header";
+import SearchBar from "../Components/SearchBar";
+import StudentsHeader from "../Components/StudentsHeader";
 
 
 // Styles
-import '../Styles/ExitApprovals.css';
+import '../Styles/Pages.css';
 
 // Others
 import { useState, useEffect } from "react";
@@ -41,7 +41,6 @@ useEffect(() => {
 
     return (
         <>
-            <Header/>
             <SearchBar/>
             <StudentsHeader/>
             {/* Students' Records */}

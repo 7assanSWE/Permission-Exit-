@@ -1,11 +1,10 @@
 // React Components
-import Students from "./Students";
-import Header from "./Header";
-import StudentsHeader from "./StudentsHeader";
-import SearchBar from "./SearchBar"
+import Students from "../Components/StudentCard";
+import StudentsHeader from "../Components/StudentsHeader";
+import SearchBar from "../Components/SearchBar"
 
 // Styles
-import '../Styles/ExitRequestsPage.css';
+import '../Styles/Pages.css';
 
 // Others
 import { useState, useEffect } from "react";
@@ -39,7 +38,6 @@ function ExitRequestsPage() {
 
     return (
         <>
-            <Header />
             <SearchBar
             search={search}
             setSearch={setSearch}
