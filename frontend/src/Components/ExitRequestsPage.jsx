@@ -2,6 +2,7 @@
 import Students from "./Students";
 import Header from "./Header";
 import StudentsHeader from "./StudentsHeader";
+import SearchBar from "./SearchBar"
 
 // Styles
 import '../Styles/ExitRequestsPage.css';
@@ -39,19 +40,10 @@ function ExitRequestsPage() {
     return (
         <>
             <Header />
-            {/* Search Bars */}
-            <div className="search-container">
-              <label htmlFor="searchBar">Search by Name or ID</label>
-              <input
-                type="search"
-                id="searchBar"
-                name="searchBar"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Enter name or ID"
-              />
-            </div>
-
+            <SearchBar
+            search={search}
+            setSearch={setSearch}
+            />
             <StudentsHeader/>
 
             <div className="students_container">

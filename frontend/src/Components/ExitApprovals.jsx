@@ -1,6 +1,9 @@
 // React Components
 import ExitApprovalCard from "./ExitApprovalCard";
 import Header from "./Header";
+import SearchBar from "./SearchBar";
+import StudentsHeader from "./StudentsHeader";
+
 
 // Styles
 import '../Styles/ExitApprovals.css';
@@ -39,16 +42,8 @@ useEffect(() => {
     return (
         <>
             <Header/>
-            {/* Search Bar */}
-            <label htmlFor="searchBar">Search by Name or ID </label>
-            <input
-                type="search"
-                id="searchBar"
-                name="searchBar"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Enter name or ID"
-            />
+            <SearchBar/>
+            <StudentsHeader/>
             {/* Students' Records */}
             <div className="students_container">
               {filteredStudents.map((student) => (
