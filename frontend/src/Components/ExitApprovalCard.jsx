@@ -4,6 +4,7 @@ import '../Styles/Students.css';
 function Students({ name, id, status, onStatusUpdate }) {
   const [visible, setVisible] = useState(true);
 
+  // Post request to approve exit request (Status: Requested --> Approved)
   const approveExit = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/requests-approvals/approve-exit", {
@@ -25,6 +26,7 @@ function Students({ name, id, status, onStatusUpdate }) {
     }
   };
 
+  // Post request to reject exit request (Status: Requested --> Rejected)
   const rejectExit = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/requests-approvals/reject-exit", {
@@ -49,6 +51,7 @@ function Students({ name, id, status, onStatusUpdate }) {
   if (!visible) return null; // Don't render anything if component should be hidden
 
   return (
+    // Students recrods as cards
     <div className="student-row">
       <p className="name">{name}</p>
       <p className="id">{id}</p>

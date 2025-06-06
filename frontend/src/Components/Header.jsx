@@ -1,11 +1,11 @@
-import '../Styles/Students.css';
+import '../Styles/Header.css';
 
 import {Link} from 'react-router-dom';
 
 function Header() {
 
     return(
-        <div className="buttons_container">
+        <div className="header">
             <Link to="/">ExitRequests</Link>
             <Link to="/ExitApprovals">ExitApprovals</Link>
         </div>

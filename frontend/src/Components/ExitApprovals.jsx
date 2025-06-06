@@ -12,7 +12,7 @@ function ExitApprovals() {
     const [students, setStudents] = useState([]);
     const [search, setSearch] = useState("");
 
-    // Fetch students from backend on mount
+    // Fetch students from backend on mount when Status: Requested
 useEffect(() => {
     fetch("http://localhost:5000/api/requests-approvals/get-students-status-requested")
         .then(res => res.json())
@@ -39,6 +39,7 @@ useEffect(() => {
     return (
         <>
             <Header/>
+            {/* Search Bar */}
             <label htmlFor="searchBar">Search by Name or ID </label>
             <input
                 type="search"
@@ -48,26 +49,23 @@ useEffect(() => {
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Enter name or ID"
             />
-            <br />
-            <br />
-            <br />
-
+            {/* Students' Records */}
             <div className="students_container">
-{filteredStudents.map((student) => (
-  <ExitApprovalCard
-    key={student.id}
-    name={student.name}
-    id={student.id}
-    status={student.status}
-    onStatusUpdate={(newStatus) => {
-      setStudents(prev =>
-        prev.map(s =>
-          s.id === student.id ? { ...s, status: newStatus } : s
-        )
-      );
-    }}
-  />
-))}
+              {filteredStudents.map((student) => (
+                <ExitApprovalCard
+                  key={student.id}
+                  name={student.name}
+                  id={student.id}
+                  status={student.status}
+                  onStatusUpdate={(newStatus) => {
+                    setStudents(prev =>
+                      prev.map(s =>
+                        s.id === student.id ? { ...s, status: newStatus } : s
+                      )
+                    );
+                  }}
+                />
+              ))}
             </div>
         </>
     );

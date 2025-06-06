@@ -1,6 +1,7 @@
 // React Components
 import Students from "./Students";
 import Header from "./Header";
+import StudentsHeader from "./StudentsHeader";
 
 // Styles
 import '../Styles/ExitRequestsPage.css';
@@ -12,7 +13,7 @@ function ExitRequestsPage() {
     const [students, setStudents] = useState([]);
     const [search, setSearch] = useState("");
 
-    // Fetch students from backend when component mounts
+    // Fetch all students from backend when component mounts
     useEffect(() => {
         fetch("http://localhost:5000/api/exit-requests/Students")
             .then(res => res.json())
@@ -38,35 +39,37 @@ function ExitRequestsPage() {
     return (
         <>
             <Header />
-            <label htmlFor="searchBar">Search by Name or ID </label>
-            <input
+            {/* Search Bars */}
+            <div className="search-container">
+              <label htmlFor="searchBar">Search by Name or ID</label>
+              <input
                 type="search"
                 id="searchBar"
                 name="searchBar"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Enter name or ID"
-            />
-            <br />
-            <br />
-            <br />
+              />
+            </div>
+
+            <StudentsHeader/>
 
             <div className="students_container">
-{filteredStudents.map((student) => (
-  <Students
-    key={student.id}
-    name={student.name}
-    id={student.id}
-    status={student.status}
-    onStatusUpdate={(newStatus) => {
-      setStudents(prev =>
-        prev.map(s =>
-          s.id === student.id ? { ...s, status: newStatus } : s
-        )
-      );
-    }}
-  />
-))}
+              {filteredStudents.map((student) => (
+                <Students
+                  key={student.id}
+                  name={student.name}
+                  id={student.id}
+                  status={student.status}
+                  onStatusUpdate={(newStatus) => {
+                    setStudents(prev =>
+                      prev.map(s =>
+                        s.id === student.id ? { ...s, status: newStatus } : s
+                      )
+                    );
+                  }}
+                />
+              ))}
             </div>
         </>
     );
